@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#custom
+.history/
+discord_bot.code-workspace
