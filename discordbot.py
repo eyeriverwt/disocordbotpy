@@ -17,10 +17,8 @@ client = discord.Client()
 @client.event # イベントを受信するための構文（デコレータ）
 async def on_ready():
     #botのステータス変更
-    #activity = discord.Game(name="Netflix", type=3)
     activity = discord.Activity(name='Netflix', type=discord.ActivityType.watching)
     await client.change_presence(activity=activity)
-    #await bot.change_presence(status=discord.Status.idle, activity=activity)
 
     print('------Logged in as------')
     print(client.user.name)
@@ -56,7 +54,7 @@ async def on_message(message):
     # if client.user in message.mentions: # 話しかけられたかの判定
 
     if 'おは' in message.content:
-        text = message.author.mention+"ちゃん、おはゆ！" #message.author.mentionでメンション、nameで名前のみ
+        text = message.author.mention+'ちゃん、おはゆ！:hatching_chick:' #message.author.mentionでメンション、nameで名前のみ
         await message.channel.send(text)
   
     # コマンドに対応するデータを取得して表示
