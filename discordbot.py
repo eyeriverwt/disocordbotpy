@@ -59,12 +59,7 @@ async def on_message(message):
         await message.channel.send(text)
 
 
-	'''/* ツェラーの公式 [Zeller]
-	年 + 年/4 - 年/100 + 年/400 + (13*月+8)/5 + 日 を7で割ったときの余り = [0-6]
-	ただし、1月、2月は前年の13月、14月として計算
-	1582/10/15(金)以降に対応。閏年対応。
-	*/'''
-    if re.search('/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/', message.content):# [yyyy/mm/dd]にマッチ
+    if re.search('^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$', message.content):# [yyyy/mm/dd]にマッチ
         text = 'Zeller!:hatching_chick:'
         await message.channel.send(text)
 
