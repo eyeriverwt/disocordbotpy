@@ -4,6 +4,7 @@ import os
 import traceback
 import random
 import re #正規表現
+import math #Zeller
 
 description = '''An example bot to showcase the discord.ext.commands extension module.
 There are a number of utility commands being showcased here.'''
@@ -42,14 +43,15 @@ def get_data(message):
 
 # ツェラーの公式 [Zeller]
 def zeller(year, month, day):
+    q = day
+    m = month
+    Y = year
+    if m <= 2:
+        m+= 12
     if month <= 2:
-        year -= 1
-        month += 10
-    else:
-        month -= 2
-        w = day + int((13 * month - 1) / 5) + year + int(year / 4) - int(year / 100) + int(year / 400)
-        x = w % 7
-    return x
+        Y -= 1
+    h = (q + math.floor((13 * (m + 1)) / 5) + Y + math.floor(Y / 4) - math.floor(Y / 100) + math.floor(Y / 400)) % 7
+    return h
 
 # メッセージ受信時に動作する処理
 @client.event
