@@ -40,6 +40,7 @@ def get_data(message):
     }
     return data_table.get(command, '対応するリストデータを取得するには、無効なコマンドです')
 
+# ツェラーの公式 [Zeller]
 def zeller(year, month, day):
     if month <= 2:
         year -= 1
@@ -66,7 +67,10 @@ async def on_message(message):
         text = message.author.mention+'ちゃん、おはゆ！:hatching_chick:' #message.author.mentionでメンション、nameで名前のみ
         await message.channel.send(text)
 
-
+    # ツェラーの公式 [Zeller]
+	# 年 + 年/4 - 年/100 + 年/400 + (13*月+8)/5 + 日 を7で割ったときの余り = [0-6]
+	# ただし、1月、2月は前年の13月、14月として計算
+	# 1582/10/15(金)以降に対応。閏年対応。
     if re.search('^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$', message.content):# [yyyy/mm/dd]にマッチ
         ztext = message.content
         l = ztext.split('/')
@@ -75,7 +79,7 @@ async def on_message(message):
         z_date  = int(l[2])
         ws = ["日", "月", "日", "水", "木", "金", "土"]
         x = zeller(z_year, z_month, z_date)
-        await message.channel.send(ws[x] + "曜日")
+        await message.channel.send(message.content + " は " + ws[x] + "曜日:turtle:")
 
 
 
