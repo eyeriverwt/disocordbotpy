@@ -40,18 +40,17 @@ def get_data(message):
 @client.event
 async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
-    if message.author == client.user:
+    if message.author.bot:
+    #if message.author == client.user:
         return
-    # 「/neko」と発言したら「にゃーん」が返る処理
-    if message.content == '/neko':
-        text = message.author.name+"ちゃん、おはゆ！" #message.author.mentionでメンション
-        await message.channel.send(text)
-        #await message.channel.send('にゃーん')
 
-    #if client.user in message.mentions: # 話しかけられたかの判定
+    # 「/neko」と発言したら「にゃーん」が返る処理
+    # if message.content == '/neko':
+    # if client.user in message.mentions: # 話しかけられたかの判定
 
     if 'おは' in message.content:
-         await message.channel.send(client.user +'ちゃん、おはゆ！')
+        text = message.author.mention+"ちゃん、おはゆ！" #message.author.mentionでメンション、nameで名前のみ
+        await message.channel.send(text)
   
     # コマンドに対応するデータを取得して表示
     print(get_data(message))
