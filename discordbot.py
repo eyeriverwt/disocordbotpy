@@ -16,10 +16,12 @@ client = discord.Client()
 """Bot起動時に実行されるイベントハンドラ"""
 @client.event # イベントを受信するための構文（デコレータ）
 async def on_ready():
-     #botのステータス変更
-    activity = discord.Game(name="Netflix", type=3)
-    await bot.change_presence(status=discord.Status.idle, activity=activity)
-    
+    #botのステータス変更
+    #activity = discord.Game(name="Netflix", type=3)
+    activity = discord.Activity(name='Netflix', type=discord.ActivityType.watching)
+    await client.change_presence(activity=activity)
+    #await bot.change_presence(status=discord.Status.idle, activity=activity)
+
     print('------Logged in as------')
     print(client.user.name)
     print(client.user.id)
