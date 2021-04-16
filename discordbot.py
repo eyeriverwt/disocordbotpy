@@ -82,8 +82,8 @@ async def on_message(message):
         await message.channel.send(message.content + " は " + ws[x] + "曜日:turtle:")
 
 
-
-
+    memstatus = message.author.activities
+    print(memstatus)
     # コマンドに対応するデータを取得して表示
     # print(get_data(message))
 
