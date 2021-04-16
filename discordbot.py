@@ -79,7 +79,7 @@ async def on_message(message):
         z_year  = int(l[0])
         z_month = int(l[1])
         z_date  = int(l[2])
-        ws = ["日", "月", "日", "水", "木", "金", "土"]
+        ws = ["月", "日", "水", "木", "金", "土", "日"]
         x = zeller(z_year, z_month, z_date)
         await message.channel.send(message.content + " は " + ws[x] + "曜日:turtle:")
 
