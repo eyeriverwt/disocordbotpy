@@ -60,8 +60,15 @@ async def on_message(message):
 
 
     if re.search('^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$', message.content):# [yyyy/mm/dd]にマッチ
+        ztext = message.content
+        l = ztext.split('/')
+        z_year  = l[0]
+        z_month = l[1]
+        z_date  = l[2]
+        
         text = 'Zeller!:hatching_chick:'
         await message.channel.send(text)
+        await message.channel.send(z_date)
 
 
 
