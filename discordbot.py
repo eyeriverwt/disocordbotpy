@@ -44,7 +44,8 @@ async def on_message(message):
         return
     # 「/neko」と発言したら「にゃーん」が返る処理
     if message.content == '/neko':
-        await message.channel.send(message.author)
+        text = message.author.mention+"ちゃん、おはゆ！" #message.author.mentionでメンション
+        await message.channel.send(text)
         #await message.channel.send('にゃーん')
 
     #if client.user in message.mentions: # 話しかけられたかの判定
