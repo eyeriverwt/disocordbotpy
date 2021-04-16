@@ -85,7 +85,7 @@ async def on_message(message):
 
 
     # コマンドに対応するデータを取得して表示
-    print(get_data(message))
+    # print(get_data(message))
 
 
 
