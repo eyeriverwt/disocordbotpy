@@ -49,7 +49,7 @@ async def on_message(message):
     #if client.user in message.mentions: # 話しかけられたかの判定
 
     if 'おは' in message.content:
-         await message.channel.send(client.user'ちゃん、おはゆ！')
+         await message.channel.send(client.user +'ちゃん、おはゆ！')
   
     # コマンドに対応するデータを取得して表示
     print(get_data(message))
