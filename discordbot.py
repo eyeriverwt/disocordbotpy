@@ -40,7 +40,15 @@ def get_data(message):
     }
     return data_table.get(command, '対応するリストデータを取得するには、無効なコマンドです')
 
-
+def zeller(year, month, day):
+    if month <= 2:
+        year -= 1
+        month += 10
+    else:
+        month -= 2
+        w = day + int((13 * month - 1) / 5) + year + int(year / 4) - int(year / 100) + int(year / 400)
+        x = w % 7
+    return x
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -62,13 +70,13 @@ async def on_message(message):
     if re.search('^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$', message.content):# [yyyy/mm/dd]にマッチ
         ztext = message.content
         l = ztext.split('/')
-        z_year  = l[0]
-        z_month = l[1]
-        z_date  = l[2]
-        
-        text = 'Zeller!:hatching_chick:'
-        await message.channel.send(text)
-        await message.channel.send(z_date)
+        z_year  = int(l[0])
+        z_month = int(l[1])
+        z_date  = int(l[2])
+        ws = ["日", "月", "日", "水", "木", "金", "土"]
+        x = zeller(z_year, z_month, z_date)
+        await message.channel.send(ws[x] + "曜日")
+
 
 
 
