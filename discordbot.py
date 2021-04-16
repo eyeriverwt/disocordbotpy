@@ -43,15 +43,13 @@ def get_data(message):
 
 # ツェラーの公式 [Zeller]
 def zeller(year, month, day):
-    q = day
-    m = month
-    Y = year
-    if m <= 2:
-        m+= 12
-    if month <= 2:
-        Y -= 1
-    h = (q + math.floor((13 * (m + 1)) / 5) + Y + math.floor(Y / 4) - math.floor(Y / 100) + math.floor(Y / 400)) % 7
+    if month == 1 or month == 2:
+        year -= 1
+        month+= 12
+    # Math.floor( year + Math.floor(year/4) - Math.floor(year/100) + Math.floor(year/400) + Math.floor((13 * month + 8)/5) + date ) % 7
+    h = math.floor( year + math.floor(year/4) - math.floor(year/100) + math.floor(year/400) + math.floor((13 * month + 8)/5) + day ) % 7
     return h
+
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -79,7 +77,7 @@ async def on_message(message):
         z_year  = int(l[0])
         z_month = int(l[1])
         z_date  = int(l[2])
-        ws = ["月", "日", "水", "木", "金", "土", "日"]
+        ws = ["日", "月", "火", "水", "木", "金", "土"]
         x = zeller(z_year, z_month, z_date)
         await message.channel.send(message.content + " は " + ws[x] + "曜日:turtle:")
 
