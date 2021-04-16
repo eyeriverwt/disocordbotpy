@@ -16,10 +16,15 @@ client = discord.Client()
 """Bot起動時に実行されるイベントハンドラ"""
 @client.event # イベントを受信するための構文（デコレータ）
 async def on_ready():
+     #botのステータス変更
+    activity = discord.Game(name="Netflix", type=3)
+    await bot.change_presence(status=discord.Status.idle, activity=activity)
+    
     print('------Logged in as------')
     print(client.user.name)
     print(client.user.id)
     print('------------------------')
+
 
 
 # コマンドに対応するリストデータを取得する関数を定義
@@ -32,7 +37,7 @@ def get_data(message):
         '/voice_channels': message.guild.voice_channels, # ボイスチャンネルのリスト
         '/category_channels': message.guild.categories, # カテゴリチャンネルのリスト
     }
-    return data_table.get(command, '無効なコマンドです')
+    return data_table.get(command, '対応するリストデータを取得するには、無効なコマンドです')
 
 
 
