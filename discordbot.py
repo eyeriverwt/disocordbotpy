@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='?', description=description)
 token = os.environ['DISCORD_BOT_TOKEN']
 
 # 接続に必要なオブジェクトを生成
-client = discord.Client()
+client = discord.Client(intents=discord.Intents.all())
 
 """Bot起動時に実行されるイベントハンドラ"""
 @client.event # イベントを受信するための構文（デコレータ）
